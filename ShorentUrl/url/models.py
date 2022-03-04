@@ -1,6 +1,6 @@
 from uuid import uuid4
 from django.db import models
-
+from rest_framework_api_key.models import AbstractAPIKey
 # Create your models here.
 class Shorten(models.Model):
     """
@@ -38,3 +38,9 @@ class Shorten(models.Model):
         except:
                  self.shorten_url=self.generate_short_url();
                  return super().save(*args,**kwargs);
+
+class Client(models.Model):
+    """
+    reprsents client 
+    """
+    name=models.CharField(max_length=256,unique=True);
