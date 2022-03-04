@@ -1,6 +1,4 @@
-from itsdangerous import Serializer
 from rest_framework import mixins , viewsets
-from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from url.models import Shorten

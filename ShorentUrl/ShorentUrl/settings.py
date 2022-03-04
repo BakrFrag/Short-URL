@@ -120,6 +120,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # set default permission for all views to include custom api key permissions
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "api.permissions.HasClientApiKey",
+        "url.permissions.HasClientApiKey",
     ]
 }
