@@ -44,3 +44,18 @@ class Client(models.Model):
     reprsents client 
     """
     name=models.CharField(max_length=256,unique=True);
+
+
+class ClientApiKey(AbstractAPIKey):
+    """
+    overide default api key
+    client 1:N ApiKey
+    """
+    client=models.ForeignKey(
+        Client,
+        on_delete=models.CASCADE,
+        related_name="api_keys",
+    );
+    class Meta(AbstractAPIKey.Meta):
+        verbose_name = "Client Api Key"
+        verbose_name_plural = "Client Api Keys"
