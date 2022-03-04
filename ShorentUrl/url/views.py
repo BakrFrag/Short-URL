@@ -1,5 +1,6 @@
 from rest_framework import mixins , viewsets
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 from django.http import HttpResponseRedirect
 from url.models import Shorten
 from url.serializers import ShortUrlSerializer
@@ -14,7 +15,7 @@ class ShortenUrlViewSet(mixins.CreateModelMixin,mixins.RetrieveModelMixin,viewse
         """
         overide default retrieve method to return http response redirect 
         """
-        print("args:",args,"kwargs:",kwargs);
         code = kwargs.get('shorten_url')
-        original_url=get_object_or_404(Shorten,shorten_url=code);
+        shorten_url= settings.DEFAULT_URL.format(code)
+        original_url=get_object_or_404(Shorten,shorten_url=shorten_url);
         return HttpResponseRedirect(original_url.original_url);

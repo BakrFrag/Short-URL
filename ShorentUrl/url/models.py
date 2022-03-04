@@ -1,5 +1,6 @@
 from uuid import uuid4
 from django.db import models
+from django.conf import settings
 from rest_framework_api_key.models import AbstractAPIKey
 # Create your models here.
 class Shorten(models.Model):
@@ -36,7 +37,8 @@ class Shorten(models.Model):
                  obj=Shorten.objects.get(original_url=self.original_url)
                  self.shorten_url=obj.shorten_url
         except:
-                 self.shorten_url=self.generate_short_url();
+                 code=self.generate_short_url();
+                 self.shorten_url=settings.DEFAULT_URL.format(code)
                  return super().save(*args,**kwargs);
 
 class Client(models.Model):
